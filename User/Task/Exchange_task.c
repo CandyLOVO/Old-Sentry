@@ -201,6 +201,7 @@ static void SolveTrajectory_Init()
 //================================================上C向下C发送数据================================================//
 static void Up_send_to_down()
 {
+	//上C向下C发送导航数据
 		uint8_t ins_buf[8] = {0};
 		ins_buf[0] = 8;	//	imu头帧标识
 		memcpy(&ins_buf[1],&INS_angle[0],4); //获取yaw的角度并储存在发送的字节中

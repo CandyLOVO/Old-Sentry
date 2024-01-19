@@ -80,13 +80,12 @@ void Yaw_task(void const *pvParameters)
 		Yaw_loop_init();//循环初始化
 		Yaw_read_imu();//获取Imu角度
 
-		//上场模式，左上角开关开到最下方
+		//左上角开关开到最下方 全自动模式
 		if(rc_ctrl.rc.s[1] == 2 && ins_yaw)
 		{
 			if(vision_receive.tracking==1)	//如果视觉检测到目标
 			{
 					Yaw_minipc_control_sita();	//视觉跟随
-//					Yaw_Rotate();		//前馈控制补偿底盘带来的旋转角速度
 					Yaw_fix_sita();		//角度控制
 			}			
 			else//没检测到开巡航模式
@@ -101,12 +100,16 @@ void Yaw_task(void const *pvParameters)
 				}
 			}
 		}
+		
+		//左上角到最上方 遥控模式
 		else if (rc_ctrl.rc.s[1] == 1)
 		{
 			Yaw_mode_remote_site();		//遥控器控制模式(位置控制)
 			yaw_fix_flag = 1;		//赋予不锁定的标志位
 		}
-		else if(rc_ctrl.rc.s[1] == 3)	//测试模式
+		
+		//左上角到中间 静态调试自瞄
+		else if(rc_ctrl.rc.s[1] == 3)
 		{
 			if(vision_receive.tracking==1)	//如果视觉检测到目标
 			{

@@ -46,31 +46,13 @@ typedef struct
 typedef struct
 {
   uint8_t header;
-	uint8_t tracking;
-	uint8_t naving;
-	float yaw;
-	float pitch;
-	float nav_vx;
-	float nav_vy;
+	uint8_t tracking; //自瞄标志位，为1瞄准
+	uint8_t naving; //导航标志位，为1导航
+	float yaw; //自瞄所需yaw到达的角度
+	float pitch; //自瞄所需pitch到达的角度
+	float nav_vx; //导航中x的速度
+	float nav_vy; //导航中y的速度
 	uint16_t checksum;
-	
-//	pByte_t official;
-//	uint8_t frame_id;
-//  float x;
-//  float y;
-//  float z;
-//  float yaw;
-//  float vx;
-//  float vy;
-//  float vz;
-//  float v_yaw;
-//  float r1;
-//  float r2;
-//  float dz;
-//	float nav_vx;
-//  float nav_vy;
-//  float nav_yaw;
-//  uint16_t checksum;
 } vision_receive_t;
 
 //================================================遥控器及键盘解算结构体================================================//

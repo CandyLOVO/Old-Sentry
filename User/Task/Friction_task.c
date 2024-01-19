@@ -78,6 +78,7 @@ void Friction_task(void const * argument)
 //			}
 //		}
 		
+		//左上角到最下方 若识别到目标，转动拨盘
 		if(rc_ctrl.rc.s[1] == 2  && vision_receive.tracking==1)//检测到目标
 		{
 			if(!bopan_reversal_flag)	//拨盘正转
@@ -89,6 +90,8 @@ void Friction_task(void const * argument)
 				Bopan_calc(bopan_reversal_speed);
 			}
 		}
+		
+		//左上角到最上方 遥控器模式，可以测试发射
 		else if(rc_ctrl.rc.s[1] == 1)
 		{
 			if(rc_ctrl.rc.s[0] == 2)
@@ -96,6 +99,8 @@ void Friction_task(void const * argument)
 				Bopan_calc(bopan_shoot_speed);
 			}
 		}
+		
+		//其他 拨盘静止
 		else
 		{			
 			Bopan_calc(0);
